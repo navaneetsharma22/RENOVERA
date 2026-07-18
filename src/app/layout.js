@@ -19,8 +19,60 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Renovera | Premium Architecture & Home Renovation",
-  description: "Renovera is a premium architecture and luxury home renovation studio crafting timeless spaces for modern living.",
+  metadataBase: new URL("https://renovera.studio"),
+  title: {
+    template: "%s | Renovera",
+    default: "Renovera | Luxury Home Renovation & Architecture Studio",
+  },
+  description: "Premium architecture, luxury home renovations, and bespoke interior design studio. We build extraordinary spaces tailored to your lifestyle.",
+  keywords: ["Luxury Home Renovation", "Architecture Studio", "Interior Design", "Turnkey Construction", "Premium Renovations", "Architectural Design"],
+  authors: [{ name: "Renovera Design Team" }],
+  creator: "Renovera Studio",
+  publisher: "Renovera",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "Renovera | Luxury Home Renovation & Architecture Studio",
+    description: "Premium architecture, luxury home renovations, and bespoke interior design studio.",
+    url: "https://renovera.studio",
+    siteName: "Renovera Studio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/images/luxury-dusk-villa.png",
+        width: 1200,
+        height: 630,
+        alt: "Renovera Luxury Villa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Renovera | Luxury Architecture Studio",
+    description: "Premium architecture and luxury home renovations.",
+    creator: "@RenoveraStudio",
+    images: ["/images/luxury-dusk-villa.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

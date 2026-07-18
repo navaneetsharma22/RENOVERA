@@ -36,15 +36,24 @@ export function ProjectGallery({ project, className }) {
     );
   }, { scope: sectionRef });
 
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen]);
+
   const openLightbox = (idx) => {
     setCurrentIndex(idx);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'unset';
   };
 
   const nextImage = (e) => {

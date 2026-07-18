@@ -73,7 +73,7 @@ export function ArticleHero({ article, className }) {
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-8 border-t border-white/20">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white/30">
-                <Image src={article.author.image} alt={article.author.name} fill className="object-cover" />
+                <Image src={article.author.image} alt={article.author.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-white">{article.author.name}</span>

@@ -39,7 +39,7 @@ export function ArticleCard({ article, className }) {
         <div className="flex items-center justify-between pt-6 border-t border-[#E4E4E7] mt-auto">
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#E4E4E7]">
-              <Image src={article.author.image} alt={article.author.name} fill className="object-cover" />
+              <Image src={article.author.image} alt={article.author.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
             </div>
             <span className="text-xs font-bold text-[#09090B]">{article.author.name}</span>
           </div>

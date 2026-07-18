@@ -34,7 +34,7 @@ export function AuthorProfile({ author, className }) {
   return (
     <div ref={sectionRef} className={cn("my-16 pt-16 border-t border-[#E4E4E7] flex flex-col md:flex-row gap-8 items-start", className)}>
       <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border border-[#E4E4E7] shrink-0">
-        <Image src={author.image} alt={author.name} fill className="object-cover" />
+        <Image src={author.image} alt={author.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
       </div>
       
       <div className="flex flex-col">

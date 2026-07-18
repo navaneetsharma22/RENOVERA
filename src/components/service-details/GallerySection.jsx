@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import gsap from "gsap";
@@ -36,15 +36,24 @@ export function GallerySection({ service, className }) {
     );
   }, { scope: sectionRef });
 
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen]);
+
   const openLightbox = (idx) => {
     setCurrentIndex(idx);
     setLightboxOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = 'unset';
   };
 
   const nextImage = (e) => {

@@ -84,10 +84,10 @@ export function ServiceOverview({ service, className }) {
             <div className="flex items-center gap-4 pt-8 border-t border-[#E4E4E7]">
               <div className="flex -space-x-3">
                 <div className="w-12 h-12 rounded-full border-2 border-[#FAFAFA] overflow-hidden relative">
-                  <Image src="/images/team-1.png" alt="Architect" fill className="object-cover" />
+                  <Image src="/images/team-1.png" alt="Architect" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
                 <div className="w-12 h-12 rounded-full border-2 border-[#FAFAFA] overflow-hidden relative">
-                  <Image src="/images/team-2.png" alt="Designer" fill className="object-cover" />
+                  <Image src="/images/team-2.png" alt="Designer" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
               </div>
               <div className="flex flex-col">
