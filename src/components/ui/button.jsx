@@ -1,5 +1,7 @@
+import * as React from "react"
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils"
 
@@ -37,18 +39,28 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
+const Button = React.forwardRef(({
   className,
   variant = "default",
   size = "default",
+  loading = false,
+  children,
+  disabled,
   ...props
-}) {
+}, ref) => {
   return (
     <ButtonPrimitive
+      ref={ref}
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props} />
+      disabled={loading || disabled}
+      {...props} 
+    >
+      {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
+      {children}
+    </ButtonPrimitive>
   );
-}
+})
+Button.displayName = "Button"
 
 export { Button, buttonVariants }
