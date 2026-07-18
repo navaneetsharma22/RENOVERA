@@ -21,7 +21,8 @@ const NAV_LINKS = [
       { href: "/process", label: "Process" },
     ],
   },
-  { href: "/blog", label: "Journal" },
+  { href: "/journal", label: "Journal" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
