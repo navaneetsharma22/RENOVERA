@@ -1,6 +1,6 @@
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
+import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const inter = Inter({
