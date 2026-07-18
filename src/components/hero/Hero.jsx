@@ -1,50 +1,141 @@
-import { HeroContainer } from "./HeroContainer";
-import { HeroContent } from "./HeroContent";
-import { HeroMedia } from "./HeroMedia";
-import { HeroButtons } from "./HeroButtons";
-import { HeroStatistics } from "./HeroStatistics";
+"use client";
+
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { animateCinematicHero } from "@/utils/animations";
+
+import { 
+  HeroContainer, 
+  HeroContent, 
+  HeroImage,
+  HeroBadge,
+  HeroHeading,
+  HeroDescription,
+  HeroCTAGroup,
+  HeroStatistics,
+  TrustIndicators,
+  FloatingInfoCard,
+  FloatingConsultationPanel,
+  ScrollIndicator
+} from "./index";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
 export function Hero() {
+  const containerRef = useRef(null);
+  const backgroundRef = useRef(null);
+  const contentRef = useRef(null);
+  const badgeRef = useRef(null);
+  const headingRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const statsRef = useRef(null);
+  const floatingCardRef = useRef(null);
+  const panelRef = useRef(null);
+  const scrollIndicatorRef = useRef(null);
+
+  useGSAP(() => {
+    animateCinematicHero({
+      container: containerRef.current,
+      background: backgroundRef.current,
+      content: contentRef.current,
+      badge: badgeRef.current,
+      heading: headingRef.current,
+      description: descriptionRef.current,
+      buttons: buttonsRef.current,
+      statistics: statsRef.current,
+      floatingCard: floatingCardRef.current,
+      panel: panelRef.current,
+      scrollIndicator: scrollIndicatorRef.current,
+    });
+
+    // Scroll Exit Animation (Parallax / Fade)
+    gsap.to(containerRef.current, {
+      y: -100,
+      opacity: 0.1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+  }, { scope: containerRef });
+
   return (
-    <HeroContainer>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-12 h-full w-full">
-        {/*
-          Responsive Ordering Strategy:
-          Desktop (lg): 12 columns. Left Col spans 5, Right Col spans 7.
-          Tablet (md): Content -> Image -> Buttons -> Stats.
-          Mobile (base): Content -> Buttons -> Stats -> Image.
-        */}
-
-        {/* Content */}
-        <div className="order-1 lg:col-span-5 lg:col-start-1 lg:row-start-1 flex flex-col justify-end lg:justify-center pb-2 lg:pb-0">
-          <HeroContent />
+    <div ref={containerRef} className="dark w-full h-full relative">
+      <HeroContainer 
+        variant="transparent"
+        background={
+          <div ref={backgroundRef} className="absolute inset-0 w-full h-full">
+            <HeroImage 
+              src="/images/luxury-dusk-villa.png" 
+              alt="Premium modern architectural villa exterior at dusk"
+              overlay={false}
+            />
+            {/* Dark overlay for readability (45%) */}
+            <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+          </div>
+        }
+      >
+        <div ref={contentRef} className="flex flex-col h-full justify-center pb-24 relative z-10 w-full lg:w-[45%]">
+          <HeroContent
+            badge={<div ref={badgeRef}><HeroBadge text="Premium Design & Build Studio" variant="primary" className="text-white" /></div>}
+            title={<div ref={headingRef}><HeroHeading title="Transforming Spaces. Elevating Living." highlight="Elevating Living." className="text-white" /></div>}
+            description={<div ref={descriptionRef}><HeroDescription description="We design and renovate exceptional homes through thoughtful architecture, premium craftsmanship, and personalized project management." className="text-white/80" /></div>}
+            buttons={
+              <div ref={buttonsRef}>
+                <HeroCTAGroup 
+                  primaryButton={{ label: "Book a Consultation", href: "/contact" }} 
+                  secondaryButton={{ label: "Explore Projects", href: "/projects" }} 
+                />
+              </div>
+            }
+            statistics={
+              <div ref={statsRef}>
+                <TrustIndicators 
+                  className="mt-12"
+                  items={[
+                    { value: "500+", label: "Projects Completed" },
+                    { value: "15+", label: "Years Experience" },
+                    { value: "98%", label: "Client Satisfaction" },
+                    { value: "Award", label: "Winning Studio" },
+                  ]}
+                />
+              </div>
+            }
+          />
+        </div>
+        
+        {/* Floating Statistics Card */}
+        <div ref={floatingCardRef} className="hidden lg:block absolute top-1/2 right-12 -translate-y-1/2 z-10 w-full max-w-[320px]">
+          <FloatingInfoCard 
+            title="Global Reach"
+            className="rounded-xl shadow-sm border-border/50 p-8"
+            items={[
+              { label: "Projects Completed", value: "520+" },
+              { label: "Cities Served", value: "25+" },
+              { label: "Client Satisfaction", value: "98%" },
+            ]}
+          />
         </div>
 
-        {/* Media */}
-        <div className="order-4 md:order-2 lg:order-none lg:col-span-7 lg:col-start-6 lg:row-span-3 lg:row-start-1 h-[50vh] md:h-[60vh] lg:h-full lg:ml-8 mt-4 lg:mt-0">
-          <HeroMedia />
+        {/* Floating Consultation Panel */}
+        <div ref={panelRef} className="absolute bottom-6 left-4 right-4 lg:left-1/2 lg:-translate-x-1/2 lg:w-full lg:max-w-5xl z-20">
+          <FloatingConsultationPanel />
         </div>
 
-        {/* Buttons */}
-        <div className="order-2 md:order-3 lg:order-none lg:col-span-5 lg:col-start-1 lg:row-start-2 pt-2 lg:pt-8">
-          <HeroButtons />
+        {/* Scroll Indicator */}
+        <div ref={scrollIndicatorRef} className="absolute bottom-1/2 right-8 hidden lg:flex z-10">
+          <ScrollIndicator variant="line" className="text-white" />
         </div>
-
-        {/* Trust Indicators */}
-        <div className="order-3 md:order-4 lg:order-none lg:col-span-5 lg:col-start-1 lg:row-start-3 pb-8 lg:mt-auto pt-6 lg:pt-0">
-          <HeroStatistics />
-        </div>
-      </div>
-      
-      {/* Scroll Indicator Placeholder */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-3">
-        <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
-          Scroll
-        </span>
-        <div className="w-[1px] h-16 bg-border relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-foreground/30" />
-        </div>
-      </div>
-    </HeroContainer>
+      </HeroContainer>
+    </div>
   );
 }

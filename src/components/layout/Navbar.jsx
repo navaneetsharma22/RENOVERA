@@ -51,15 +51,20 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-[height] duration-300 ease-in-out bg-background border-b border-border flex items-center",
-        isScrolled ? "h-[72px]" : "h-[88px]"
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out flex items-center",
+        isScrolled 
+          ? "h-[72px] bg-background border-b border-border" 
+          : "h-[88px] bg-transparent border-transparent"
       )}
     >
       <div className="container mx-auto px-4 md:px-8 max-w-[1440px] flex items-center justify-between w-full h-full">
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold font-heading tracking-tight text-primary flex-shrink-0"
+          className={cn(
+            "text-2xl font-bold font-heading tracking-tight flex-shrink-0 transition-colors",
+            isScrolled ? "text-primary" : "text-white"
+          )}
         >
           RENOVERA
         </Link>
@@ -74,7 +79,10 @@ export function Navbar() {
               onMouseLeave={() => link.children && setActiveDropdown(null)}
             >
               {link.children ? (
-                <button className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors flex items-center gap-1">
+                <button className={cn(
+                  "px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1",
+                  isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
+                )}>
                   {link.label}
                   <ChevronDown className="size-3" />
                 </button>
@@ -84,14 +92,17 @@ export function Navbar() {
                   className={cn(
                     "px-4 py-2 text-sm font-medium transition-colors relative flex items-center h-full",
                     pathname === link.href
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
+                      ? (isScrolled ? "text-primary" : "text-white")
+                      : (isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white")
                   )}
                 >
                   {link.label}
                   {/* Active Indicator */}
                   {pathname === link.href && (
-                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-primary" />
+                    <span className={cn(
+                      "absolute bottom-0 left-4 right-4 h-[2px]",
+                      isScrolled ? "bg-primary" : "bg-white"
+                    )} />
                   )}
                 </Link>
               )}
@@ -128,10 +139,20 @@ export function Navbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-4 flex-shrink-0">
-          <Button className="hidden md:inline-flex">Start a Project</Button>
+          <Button 
+            className={cn(
+              "hidden md:inline-flex transition-colors",
+              !isScrolled && "bg-white text-primary hover:bg-white/90"
+            )}
+          >
+            Start a Project
+          </Button>
 
           <button
-            className="md:hidden p-2 text-foreground"
+            className={cn(
+              "md:hidden p-2 transition-colors",
+              isScrolled ? "text-foreground" : "text-white"
+            )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Menu"
           >

@@ -1,31 +1,27 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Renders the main Hero heading.
+ * Premium Heading for the Hero.
  * Optionally highlights specific words by splitting the title on the highlight string.
  */
 export function HeroHeading({ title, highlight, className }) {
-  const renderTitle = () => {
-    if (!highlight || !title.includes(highlight)) {
-      return title;
-    }
-    
-    const parts = title.split(highlight);
+  if (!highlight || !title.includes(highlight)) {
     return (
-      <>
-        {parts[0]}
-        <span className="text-primary/70">{highlight}</span>
-        {parts[1]}
-      </>
+      <h1 className={cn("text-5xl md:text-6xl lg:text-[72px] font-bold font-heading tracking-tight leading-[1.1] mb-6 max-w-[600px]", className)}>
+        {title}
+      </h1>
     );
-  };
+  }
+
+  const parts = title.split(highlight);
 
   return (
-    <h1 className={cn(
-      "text-4xl md:text-6xl lg:text-[4.5rem] font-heading font-bold tracking-tighter text-foreground leading-[1.05] mb-6",
-      className
-    )}>
-      {renderTitle()}
+    <h1 className={cn("text-5xl md:text-6xl lg:text-[76px] font-bold font-heading tracking-tight leading-[1.1] mb-8 max-w-[600px]", className)}>
+      {parts[0]}
+      <span className="font-serif italic text-[#C5A059] font-normal tracking-normal block mt-1">
+        {highlight}
+      </span>
+      {parts[1]}
     </h1>
   );
 }
