@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight, Instagram, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -27,7 +26,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background pt-16 pb-8">
+    <footer className="border-t border-border bg-background pt-16 pb-8 mt-24">
       <div className="container mx-auto px-4 md:px-8 max-w-[1440px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
           {/* Brand & Newsletter */}
@@ -124,27 +123,24 @@ export function Footer() {
             &copy; {currentYear} Renovera Studio. All rights reserved.
           </p>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <Link
               href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Instagram"
+              className="text-xs uppercase tracking-wider font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              <Instagram className="size-5" strokeWidth={1.5} />
+              Instagram
             </Link>
             <Link
               href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Twitter"
+              className="text-xs uppercase tracking-wider font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              <Twitter className="size-5" strokeWidth={1.5} />
+              Twitter
             </Link>
             <Link
               href="#"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn"
+              className="text-xs uppercase tracking-wider font-medium text-muted-foreground hover:text-primary transition-colors"
             >
-              <Linkedin className="size-5" strokeWidth={1.5} />
+              LinkedIn
             </Link>
           </div>
         </div>
