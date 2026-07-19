@@ -3,7 +3,7 @@ export const projectsPageData = {
     badge: "Our Portfolio",
     heading: "Spaces That\nDefine Modern Living.",
     description: "Explore a curated collection of luxury renovations, architectural transformations, bespoke interiors, and timeless living spaces crafted by Renovera.",
-    image: "/images/renovera-hero-architecture.png",
+    image: "/images/portfolio_hero_architecture.png",
     primaryCTA: "Book Consultation",
     secondaryCTA: "Explore Services"
   },

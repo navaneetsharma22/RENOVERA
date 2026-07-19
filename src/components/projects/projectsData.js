@@ -12,7 +12,7 @@ export const projectsData = [
   {
     id: "oceanfront-villa-estate",
     title: "Oceanfront Villa Estate",
-    slug: "oceanfront-villa-estate",
+    slug: "glass-house-estate",
     category: "Luxury Villas",
     location: "Goa, India",
     year: "2024",
@@ -25,7 +25,7 @@ export const projectsData = [
   {
     id: "modern-minimalist-kitchen",
     title: "Culinary Haven",
-    slug: "modern-minimalist-kitchen",
+    slug: "culinary-suite",
     category: "Residential",
     location: "Mumbai, India",
     year: "2025",
@@ -38,7 +38,7 @@ export const projectsData = [
   {
     id: "zen-spa-bathroom",
     title: "Zen Spa Retreat",
-    slug: "zen-spa-bathroom",
+    slug: "zen-garden",
     category: "Residential",
     location: "Pune, India",
     year: "2023",
@@ -51,7 +51,7 @@ export const projectsData = [
   {
     id: "concrete-minimalist-residence",
     title: "The Concrete Pavilion",
-    slug: "concrete-minimalist-residence",
+    slug: "minimalist-pavilion",
     category: "Architecture",
     location: "Alibaug, India",
     year: "2024",
@@ -64,7 +64,7 @@ export const projectsData = [
   {
     id: "skyline-penthouse-suite",
     title: "Skyline Penthouse",
-    slug: "skyline-penthouse-suite",
+    slug: "skyline-penthouse",
     category: "Apartments",
     location: "Bengaluru, India",
     year: "2025",
@@ -77,7 +77,7 @@ export const projectsData = [
   {
     id: "urban-oasis-living",
     title: "Urban Oasis Living",
-    slug: "urban-oasis-living",
+    slug: "urban-loft",
     category: "Residential",
     location: "Delhi, India",
     year: "2023",
@@ -90,7 +90,7 @@ export const projectsData = [
   {
     id: "hillside-modern-estate",
     title: "Hillside Estate",
-    slug: "hillside-modern-estate",
+    slug: "alpine-modern",
     category: "Luxury Villas",
     location: "Lonavala, India",
     year: "2024",

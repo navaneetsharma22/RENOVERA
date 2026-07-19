@@ -24,8 +24,8 @@ export function HeroContainer({ children, background, className, variant = "defa
       )}
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 md:px-8 max-w-[1440px] h-full z-10 relative pointer-events-none">
-        <div className="max-w-[1280px] mx-auto h-full relative pointer-events-auto">
+      <div className="w-full h-full px-6 md:px-12 lg:px-16 z-10 relative pointer-events-none">
+        <div className="w-full h-full relative pointer-events-auto">
           {children}
         </div>
       </div>

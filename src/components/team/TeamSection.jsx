@@ -110,15 +110,7 @@ export function TeamSection({ className }) {
     <section ref={sectionRef} className={cn("py-24 md:py-32 bg-[#FAFAFA] overflow-hidden", className)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div ref={headerRef} className="mb-16 md:mb-24">
-          <SectionHeader 
-            badge="Meet the Team"
-            title="The People Behind Every Transformation."
-            highlight="Every Transformation."
-            description="Renovera brings together architects, designers, engineers, and project managers who share a passion for creating exceptional spaces through precision, creativity, and collaboration."
-          />
-        </div>
+
 
         {/* Leadership Spotlight */}
         <div ref={leaderRef} className="max-w-[1200px] mx-auto mb-24 md:mb-32">

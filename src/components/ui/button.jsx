@@ -46,6 +46,7 @@ const Button = React.forwardRef(({
   loading = false,
   children,
   disabled,
+  asChild = false,
   ...props
 }, ref) => {
   return (
@@ -54,10 +55,11 @@ const Button = React.forwardRef(({
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       disabled={loading || disabled}
+      {...(asChild && React.isValidElement(children) ? { render: children, nativeButton: false } : {})}
       {...props} 
     >
       {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
-      {children}
+      {asChild ? undefined : children}
     </ButtonPrimitive>
   );
 })

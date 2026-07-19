@@ -31,10 +31,10 @@ export function ProjectCard({ project, className }) {
 
         {/* Content */}
         <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-20">
-          <h4 className="text-2xl md:text-3xl font-bold font-heading text-white mb-2 transform transition-transform duration-500 group-hover:-translate-y-2">
+          <h4 className="text-2xl md:text-3xl font-bold font-heading text-white mb-2 transform transition-transform duration-500 group-hover:-translate-y-8">
             {project.title}
           </h4>
-          <div className="flex items-center gap-x-4 text-xs font-bold uppercase tracking-widest text-white/80 mb-2 transform transition-transform duration-500 group-hover:-translate-y-2">
+          <div className="flex items-center gap-x-4 text-xs font-bold uppercase tracking-widest text-white/80 transform transition-transform duration-500 group-hover:-translate-y-8">
             <span>{project.location}</span>
             <span>•</span>
             <span>{project.year}</span>

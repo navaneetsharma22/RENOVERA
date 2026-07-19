@@ -16,8 +16,9 @@ export function HeroImage({
         alt={alt}
         fill={fill}
         priority={priority}
+        quality={100}
         className={cn("object-cover object-center transition-transform duration-[1.5s] ease-out group-hover:scale-[1.02]", className)}
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 60vw"
+        sizes="100vw"
       />
       
       {overlay && (

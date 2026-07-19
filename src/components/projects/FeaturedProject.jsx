@@ -34,7 +34,7 @@ export function FeaturedProject({ project }) {
             </span>
           </div>
 
-          <h3 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading mb-4 leading-tight">
+          <h3 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading text-white mb-4 leading-tight">
             {project.title}
           </h3>
 

@@ -75,12 +75,12 @@ export function Hero() {
         background={
           <div ref={backgroundRef} className="absolute inset-0 w-full h-full">
             <HeroImage 
-              src="/images/luxury-dusk-villa.png" 
+              src="/images/home_hero_premium.png" 
               alt="Premium modern architectural villa exterior at dusk"
               overlay={false}
             />
-            {/* Dark overlay for readability (45%) */}
-            <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+            {/* Gradient overlay for readability (dark left, clear right) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent pointer-events-none" />
           </div>
         }
       >

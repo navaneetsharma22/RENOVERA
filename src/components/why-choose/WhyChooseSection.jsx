@@ -10,6 +10,8 @@ import { SectionHeader } from "./SectionHeader";
 import { AdvantageGrid } from "./AdvantageGrid";
 import { CompanyMetrics } from "./CompanyMetrics";
 import { CommitmentQuote } from "./CommitmentQuote";
+import { MaterialShowcase } from "@/components/quality/MaterialShowcase";
+import { QualityGrid } from "@/components/quality/QualityGrid";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -21,6 +23,7 @@ export function WhyChooseSection({ className }) {
   const gridRef = useRef(null);
   const metricsRef = useRef(null);
   const quoteRef = useRef(null);
+  const materialsRef = useRef(null);
 
   useGSAP(() => {
     // Reveal Header
@@ -87,6 +90,23 @@ export function WhyChooseSection({ className }) {
       }
     );
 
+    // Reveal Material Slider
+    if (materialsRef.current) {
+      gsap.fromTo(materialsRef.current,
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: materialsRef.current,
+            start: "top 85%",
+          }
+        }
+      );
+    }
+
   }, { scope: sectionRef });
 
   return (
@@ -107,7 +127,22 @@ export function WhyChooseSection({ className }) {
         <div ref={gridRef} className="max-w-[1200px] mx-auto mb-24 md:mb-32">
           <AdvantageGrid />
         </div>
+      </div>
 
+      {/* Material Showcase (Full Width slider on mobile, contained grid on desktop) */}
+      <div ref={materialsRef} className="mb-24 md:mb-32 w-full">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-12">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-4">
+            <span className="w-8 h-[1px] bg-[#C5A059]"></span>
+            Material & Finish Showcase
+          </h3>
+        </div>
+        <div className="lg:container lg:mx-auto lg:px-8">
+          <MaterialShowcase />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Company Metrics */}
         <div ref={metricsRef} className="max-w-[1200px] mx-auto mb-24 md:mb-32">
           <CompanyMetrics />
