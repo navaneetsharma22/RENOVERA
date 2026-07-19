@@ -1,5 +1,6 @@
 import { Inter, Geist_Mono, Playfair_Display } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
+import { ClientLayout } from "@/components/layout/ClientLayout";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
@@ -82,11 +83,13 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
-        <Navbar />
-        <div className="flex-1">
-          {children}
-        </div>
-        <Footer />
+        <ClientLayout>
+          <Navbar />
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );

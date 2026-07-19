@@ -1,33 +1,18 @@
-import {
-  JournalHero,
-  FeaturedArticle,
-  TrendingTopics,
-  ArticlesGrid,
-  PopularArticles,
-  NewsletterSection,
-  JournalCTA
-} from "@/components/journal-page";
+import { ComingSoonPage } from "@/components/coming-soon";
 
 export const metadata = {
-  title: "Design Journal | Renovera",
-  description: "Read expert insights on architecture, luxury home renovation, interior design, construction, and modern living from Renovera.",
+  title: "Coming Soon | Renovera",
+  description: "This page is currently under development and will be available soon.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function JournalPage() {
   return (
-    <main className="flex min-h-screen flex-col w-full bg-background">
-      <JournalHero />
-      <FeaturedArticle />
-      <TrendingTopics />
-      
-      {/* Search and Filters are embedded within ArticlesGrid to share state */}
-      <div id="articles">
-        <ArticlesGrid />
-      </div>
-      
-      <PopularArticles />
-      <NewsletterSection />
-      <JournalCTA />
+    <main className="flex min-h-screen flex-col w-full">
+      <ComingSoonPage />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,9 @@ import { cn } from "@/lib/utils";
 export function FloatingConsultationPanel({ className }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +96,7 @@ export function FloatingConsultationPanel({ className }) {
       </form>
 
       {/* Custom Toast Notification */}
-      {typeof document !== 'undefined' && createPortal(
+      {mounted && createPortal(
         <div 
           className={cn(
             "fixed bottom-8 right-8 z-50 flex items-center gap-3 bg-white text-black px-6 py-4 rounded-xl shadow-2xl border border-border/50 transform transition-all duration-500 ease-out",
