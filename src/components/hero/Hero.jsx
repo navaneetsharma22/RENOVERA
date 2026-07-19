@@ -53,10 +53,55 @@ export function Hero() {
       scrollIndicator: scrollIndicatorRef.current,
     });
 
-    // Scroll Exit Animation (Parallax / Fade)
+    // Hero Background Slideshow — crossfade + scale
+    const slides = containerRef.current.querySelectorAll(".hero-slide");
+    if (slides.length > 1) {
+      const DURATION = 1.5;  // crossfade duration
+      const HOLD = 6;        // seconds each image stays visible
+      const totalSlides = slides.length;
+
+      // Set initial scale for all slides
+      slides.forEach((slide, i) => {
+        gsap.set(slide, { scale: i === 0 ? 1 : 1.08 });
+      });
+
+      // Animate the first slide's scale during its hold time
+      gsap.fromTo(slides[0], { scale: 1.08 }, { scale: 1, duration: HOLD + DURATION, ease: "none" });
+
+      const crossfade = (currentIndex) => {
+        const nextIndex = (currentIndex + 1) % totalSlides;
+        const current = slides[currentIndex];
+        const next = slides[nextIndex];
+
+        // Prepare next slide
+        gsap.set(next, { scale: 1.08 });
+
+        const tl = gsap.timeline({
+          onComplete: () => crossfade(nextIndex),
+        });
+
+        // Scale the next image from 1.08 → 1.0 while it fades in
+        tl.to(next, {
+          opacity: 1,
+          scale: 1,
+          duration: HOLD + DURATION,
+          ease: "none",
+        })
+        // Simultaneously fade out the current slide
+        .to(current, {
+          opacity: 0,
+          duration: DURATION,
+          ease: "power2.inOut",
+        }, 0);
+      };
+
+      // Start the slideshow after the first image has been visible
+      gsap.delayedCall(HOLD, () => crossfade(0));
+    }
+
+    // Scroll Exit Animation (Parallax)
     gsap.to(containerRef.current, {
       y: -100,
-      opacity: 0.1,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -73,27 +118,56 @@ export function Hero() {
       <HeroContainer 
         variant="transparent"
         background={
-          <div ref={backgroundRef} className="absolute inset-0 w-full h-full">
-            <HeroImage 
-              src="/images/home_hero_premium.png" 
-              alt="Premium modern architectural villa exterior at dusk"
-              overlay={false}
+          <div ref={backgroundRef} className="absolute inset-0 w-full h-full overflow-hidden bg-black">
+            {/* Slideshow Images — stacked, GSAP controls opacity + scale */}
+            {[
+              "/images/img1.png",
+              "/images/img2.png",
+              "/images/img3.png",
+              "/images/img4.png",
+            ].map((src, i) => (
+              <div
+                key={i}
+                className="hero-slide absolute inset-0 w-full h-full"
+                style={{ opacity: i === 0 ? 1 : 0 }}
+              >
+                <HeroImage
+                  src={src}
+                  alt={`Luxury architecture showcase ${i + 1}`}
+                  overlay={false}
+                  priority={i === 0}
+                  className="!animate-none"
+                />
+              </div>
+            ))}
+
+            {/* Cinematic Gradient overlay (80% left, 40% right) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 pointer-events-none z-[1]" />
+            
+            {/* Architectural Grid Overlay (3% opacity) */}
+            <div 
+              className="absolute inset-0 pointer-events-none opacity-[0.03] z-[1]"
+              style={{
+                backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+                backgroundSize: '4rem 4rem'
+              }}
             />
-            {/* Gradient overlay for readability (dark left, clear right) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent pointer-events-none" />
+
+            {/* Subtle Vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.4)_100%)] pointer-events-none z-[1]" />
           </div>
         }
       >
-        <div ref={contentRef} className="flex flex-col h-full justify-center pb-24 relative z-10 w-full lg:w-[45%]">
+        <div ref={contentRef} className="flex flex-col h-full justify-center pt-28 md:pt-[130px] pb-24 relative z-10 w-full lg:w-[45%]">
           <HeroContent
-            badge={<div ref={badgeRef}><HeroBadge text="Premium Design & Build Studio" variant="primary" className="text-white" /></div>}
-            title={<div ref={headingRef}><HeroHeading title="Transforming Spaces. Elevating Living." highlight="Elevating Living." className="text-white" /></div>}
-            description={<div ref={descriptionRef}><HeroDescription description="We design and renovate exceptional homes through thoughtful architecture, premium craftsmanship, and personalized project management." className="text-white/80" /></div>}
+            badge={<div ref={badgeRef} className="mb-8"><HeroBadge text="Premium Design & Build Studio" variant="primary" className="text-white" /></div>}
+            title={<div ref={headingRef} className="mb-10"><HeroHeading title="Transforming Spaces. Elevating Living." highlight="Elevating Living." className="text-white" /></div>}
+            description={<div ref={descriptionRef} className="mb-12"><HeroDescription description="We design and renovate exceptional homes through thoughtful architecture, premium craftsmanship, and personalized project management." maxWidth="max-w-[620px]" className="text-white/90" /></div>}
             buttons={
               <div ref={buttonsRef}>
                 <HeroCTAGroup 
-                  primaryButton={{ label: "Book a Consultation", href: "/contact" }} 
-                  secondaryButton={{ label: "Explore Projects", href: "/projects" }} 
+                  primaryButton={{ label: "Book Consultation", href: "/contact" }} 
+                  secondaryButton={{ label: "View Portfolio", href: "/projects" }} 
                 />
               </div>
             }

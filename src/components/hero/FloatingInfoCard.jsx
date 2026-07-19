@@ -14,9 +14,11 @@ export function FloatingInfoCard({ className, items = [] }) {
   };
 
   return (
-    <div className={cn("bg-white text-zinc-900 p-7 lg:p-8 rounded-[12px] shadow-[0_15px_40px_rgb(0,0,0,0.12)] flex flex-col divide-y divide-zinc-200", className)}>
-      {items.map((item, idx) => (
-        <div key={idx} className="flex items-center gap-5 py-5 first:pt-0 last:pb-0 group">
+    <div className={cn("bg-white text-zinc-900 p-10 lg:p-12 rounded-2xl shadow-2xl shadow-black/20 flex flex-col divide-y divide-zinc-200 hover:-translate-y-1 transition-transform duration-500", className)}>
+      <h3 className="font-heading font-bold text-xl mb-4 text-zinc-900">Our Impact</h3>
+      <div className="flex flex-col divide-y divide-zinc-200 border-t border-zinc-200">
+        {items.map((item, idx) => (
+          <div key={idx} className="flex items-center gap-5 py-5 group">
           <div className="flex-shrink-0 transition-transform group-hover:scale-110 duration-300">
             {getIcon(item.value)}
           </div>
@@ -24,8 +26,9 @@ export function FloatingInfoCard({ className, items = [] }) {
             <span className="font-bold text-2xl text-zinc-900 mb-0.5">{item.value}</span>
             <span className="text-[13px] text-zinc-500 font-medium">{item.label}</span>
           </div>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

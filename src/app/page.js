@@ -4,8 +4,7 @@ import { ServicesSection } from "@/components/services";
 import { ProjectsSection } from "@/components/projects";
 
 import { WhyChooseSection } from "@/components/why-choose";
-
-
+import { ProcessSection } from "@/components/process";
 import { TestimonialsSection } from "@/components/testimonials";
 
 import { FAQSection } from "@/components/faq";
@@ -18,10 +17,8 @@ export default function Home() {
       <TransformationSection />
       <ServicesSection />
       <ProjectsSection />
-
       <WhyChooseSection />
-
-
+      <ProcessSection />
       <TestimonialsSection />
 
       <FAQSection />

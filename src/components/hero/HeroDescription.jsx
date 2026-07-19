@@ -5,7 +5,7 @@ export function HeroDescription({ description, maxWidth = "max-w-lg", className 
 
   return (
     <p className={cn(
-      "text-lg md:text-xl text-muted-foreground leading-relaxed",
+      "text-lg md:text-xl text-muted-foreground leading-loose",
       maxWidth,
       className
     )}>

@@ -9,16 +9,16 @@ export function HeroCTAGroup({
   className 
 }) {
   return (
-    <div className={cn("flex flex-wrap items-center gap-4 mt-8", className)}>
+    <div className={cn("flex flex-wrap items-center gap-6 mt-10", className)}>
       {primaryButton && (
         <Button 
           size="lg" 
           asChild 
-          className="group relative h-14 bg-white text-black hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+          className="group relative h-14 px-8 bg-white text-black hover:bg-white/90 active:scale-[0.98] transition-all duration-300"
         >
           <Link href={primaryButton.href}>
-            {primaryButton.label}
-            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+            <span className="font-semibold">{primaryButton.label}</span>
+            <ArrowRight className="ml-3 size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </Button>
       )}
@@ -28,11 +28,10 @@ export function HeroCTAGroup({
           variant="outline" 
           size="lg" 
           asChild 
-          className="group h-14 bg-transparent border-white/30 text-white hover:bg-white/10 hover:border-white transition-all duration-300"
+          className="group relative h-14 px-8 bg-transparent border-white/40 text-white hover:bg-white hover:text-black hover:border-white transition-all duration-500"
         >
           <Link href={secondaryButton.href}>
-            {secondaryButton.label}
-            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+            <span className="font-semibold">{secondaryButton.label}</span>
           </Link>
         </Button>
       )}

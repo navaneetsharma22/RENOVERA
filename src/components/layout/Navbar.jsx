@@ -52,13 +52,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out flex items-center",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out flex items-center",
         isScrolled 
-          ? "h-[72px] bg-background border-b border-border" 
+          ? "h-[72px] bg-background/80 backdrop-blur-md border-b border-border/50 shadow-sm" 
           : "h-[88px] bg-transparent border-transparent"
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 max-w-[1440px] flex items-center justify-between w-full h-full">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 max-w-[1440px] flex items-center justify-between w-full h-full">
         {/* Logo */}
         <Link
           href="/"
@@ -71,17 +71,17 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1 h-full">
+        <nav className="hidden md:flex items-center space-x-8 h-full">
           {NAV_LINKS.map((link, idx) => (
             <div
               key={idx}
-              className="relative h-full flex items-center"
+              className="relative h-full flex items-center group/navitem"
               onMouseEnter={() => link.children && setActiveDropdown(idx)}
               onMouseLeave={() => link.children && setActiveDropdown(null)}
             >
               {link.children ? (
                 <button className={cn(
-                  "px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1",
+                  "px-4 py-2 text-sm font-medium transition-colors flex items-center gap-1 group",
                   isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white"
                 )}>
                   {link.label}
@@ -91,20 +91,19 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium transition-colors relative flex items-center h-full",
+                    "px-4 py-2 text-sm font-medium transition-colors relative flex items-center h-full group",
                     pathname === link.href
                       ? (isScrolled ? "text-primary" : "text-white")
                       : (isScrolled ? "text-foreground hover:text-primary" : "text-white/90 hover:text-white")
                   )}
                 >
                   {link.label}
-                  {/* Active Indicator */}
-                  {pathname === link.href && (
-                    <span className={cn(
-                      "absolute bottom-0 left-4 right-4 h-[2px]",
-                      isScrolled ? "bg-primary" : "bg-white"
-                    )} />
-                  )}
+                  {/* Active/Hover Indicator */}
+                  <span className={cn(
+                    "absolute bottom-[24px] left-4 right-4 h-[2px] transition-transform duration-300 origin-left",
+                    pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
+                    isScrolled ? "bg-primary" : "bg-white"
+                  )} />
                 </Link>
               )}
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, MapPin, Ruler, Wallet, Home, CheckCircle2 } from "lucide-react";
+import { ArrowRight, MapPin, Ruler, Wallet, Home, CheckCircle2, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function FloatingConsultationPanel({ className }) {
@@ -30,77 +30,63 @@ export function FloatingConsultationPanel({ className }) {
       <form 
         onSubmit={handleSubmit}
         className={cn(
-          "bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl rounded-2xl w-full transition-all duration-500 overflow-hidden",
+          "bg-[#111111]/90 backdrop-blur-md border border-white/10 shadow-2xl rounded-3xl w-full transition-all duration-500 overflow-hidden",
           className
         )}
       >
         <div className="flex flex-col lg:flex-row w-full divide-y lg:divide-y-0 lg:divide-x divide-white/10">
-          {/* Project Type */}
-          <div className="flex flex-1 items-center px-6 py-4 lg:py-6 group transition-colors hover:bg-white/5">
-            <Home className="size-5 text-white/50 mr-4 flex-shrink-0 group-hover:text-white transition-colors" />
+          {/* Property Type */}
+          <div className="flex flex-1 items-center px-8 py-5 lg:py-8 group transition-colors hover:bg-white/5">
+            <Home className="size-6 text-white/50 mr-5 flex-shrink-0 group-hover:text-white transition-colors" />
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50 mb-1">Project Type</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 mb-1">Property Type</span>
               <Input 
                 type="text" 
                 required
-                placeholder="e.g. Full Renovation" 
-                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-sm font-medium text-white placeholder:text-white/30"
+                placeholder="e.g. Luxury Villa" 
+                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-base font-medium text-white placeholder:text-white/30"
               />
             </div>
           </div>
 
-          {/* Location */}
-          <div className="flex flex-1 items-center px-6 py-4 lg:py-6 group transition-colors hover:bg-white/5">
-            <MapPin className="size-5 text-white/50 mr-4 flex-shrink-0 group-hover:text-white transition-colors" />
+          {/* Project Budget */}
+          <div className="flex flex-1 items-center px-8 py-5 lg:py-8 group transition-colors hover:bg-white/5">
+            <Wallet className="size-6 text-white/50 mr-5 flex-shrink-0 group-hover:text-white transition-colors" />
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50 mb-1">Location</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 mb-1">Project Budget</span>
               <Input 
                 type="text" 
                 required
-                placeholder="City or ZIP code" 
-                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-sm font-medium text-white placeholder:text-white/30"
+                placeholder="$150k - $500k+" 
+                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-base font-medium text-white placeholder:text-white/30"
               />
             </div>
           </div>
 
-          {/* Property Size */}
-          <div className="flex flex-1 items-center px-6 py-4 lg:py-6 group transition-colors hover:bg-white/5">
-            <Ruler className="size-5 text-white/50 mr-4 flex-shrink-0 group-hover:text-white transition-colors" />
+          {/* Timeline */}
+          <div className="flex flex-1 items-center px-8 py-5 lg:py-8 group transition-colors hover:bg-white/5">
+            <Calendar className="size-6 text-white/50 mr-5 flex-shrink-0 group-hover:text-white transition-colors" />
             <div className="flex flex-col w-full">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50 mb-1">Property Size</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 mb-1">Timeline</span>
               <Input 
                 type="text" 
                 required
-                placeholder="Approx. Sq Ft" 
-                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-sm font-medium text-white placeholder:text-white/30"
-              />
-            </div>
-          </div>
-
-          {/* Estimated Budget */}
-          <div className="flex flex-1 items-center px-6 py-4 lg:py-6 group transition-colors hover:bg-white/5">
-            <Wallet className="size-5 text-white/50 mr-4 flex-shrink-0 group-hover:text-white transition-colors" />
-            <div className="flex flex-col w-full">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50 mb-1">Est. Budget</span>
-              <Input 
-                type="text" 
-                required
-                placeholder="$150k - $300k" 
-                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-sm font-medium text-white placeholder:text-white/30"
+                placeholder="Within 6 months" 
+                className="h-auto p-0 border-0 bg-transparent dark:bg-transparent shadow-none focus-visible:ring-0 text-base font-medium text-white placeholder:text-white/30"
               />
             </div>
           </div>
 
           {/* CTA */}
-          <div className="flex items-center lg:w-[220px] p-2 lg:p-3">
+          <div className="flex items-center lg:w-[260px] p-3 lg:p-4">
             <Button 
               type="submit"
               disabled={isSubmitting}
               size="lg" 
-              className="w-full h-full min-h-[56px] rounded-xl group bg-white text-black hover:bg-white/90 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-full min-h-[64px] rounded-2xl group bg-white text-black hover:bg-white/90 disabled:opacity-70 disabled:cursor-not-allowed font-semibold text-base"
             >
-              {isSubmitting ? "Sending..." : "Book Consultation"}
-              {!isSubmitting && <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />}
+              {isSubmitting ? "Sending..." : "Start Your Project"}
+              {!isSubmitting && <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" />}
             </Button>
           </div>
         </div>

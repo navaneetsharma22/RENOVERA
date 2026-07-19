@@ -150,60 +150,77 @@ export const animateCinematicHero = (refs) => {
 
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // Sequence
+    // Sequence:
+    // 1. Navbar Fade (handled globally or implicit here if we had navbar ref, skipping since it's fixed/handled by React state)
+    // 2. Hero Image Scale
     tl.to(background, {
       opacity: 1,
       scale: 1,
       duration: 1.5,
       ease: "power2.out"
     })
+    // Container/Content setup
     .to(content, {
       opacity: 1,
       duration: 0.5,
     }, "-=0.5")
+    // 3. Badge Fade Up
     .to(badge, {
       opacity: 1,
       y: 0,
       duration: 0.6,
+      ease: "power3.out"
     }, "-=0.2")
+    // 4. Heading Reveal
     .to(heading, {
       opacity: 1,
       y: 0,
       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       duration: 1.0,
+      ease: "power3.out"
     }, "-=0.4")
+    // 5. Italic Text Reveal (part of heading)
+    // 6. Paragraph Fade
     .to(description, {
       opacity: 1,
       y: 0,
       duration: 0.8,
+      ease: "power3.out"
     }, "-=0.6")
+    // 7. Buttons Slide Up
     .to(buttons.children, {
       opacity: 1,
       y: 0,
       duration: 0.6,
-      stagger: 0.1,
+      stagger: 0.15,
+      ease: "power3.out"
     }, "-=0.6")
+    // 8. Trust Metrics Fade
     .to(statistics.children, {
       opacity: 1,
       y: 0,
       duration: 0.6,
-      stagger: 0.1,
+      stagger: 0.15,
+      ease: "power3.out"
     }, "-=0.4")
+    // 9. Impact Card Slide From Right
     .to(floatingCard, {
       opacity: 1,
       y: 0,
       duration: 0.8,
-      ease: "power2.out",
+      ease: "power3.out",
     }, "-=0.2")
+    // 10. Consultation Planner Slide Up
     .to(panel, {
       opacity: 1,
       y: 0,
       duration: 0.8,
-      ease: "power2.out",
+      ease: "power3.out",
     }, "-=0.6")
     .to(scrollIndicator, {
       opacity: 1,
       duration: 1.0,
+      ease: "power2.out"
     }, "-=0.2");
 
     return () => tl.kill();

@@ -4,17 +4,12 @@ import { ArrowDown, Mouse } from "lucide-react";
 export function ScrollIndicator({ variant = "line", label = "Scroll", className }) {
   return (
     <div className={cn("flex flex-col items-center gap-3", className)}>
-      {label && (
-        <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
-          {label}
+      <div className="flex flex-col items-center gap-4 animate-bounce">
+        <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/70 rotate-90 my-6">
+          Scroll
         </span>
-      )}
-      
-      {variant === "line" && (
-        <div className="w-[1px] h-16 bg-border relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-foreground/30" />
-        </div>
-      )}
+        <ArrowDown className="size-4 text-white/70" />
+      </div>
 
       {variant === "mouse" && (
         <Mouse className="size-5 text-muted-foreground" />
